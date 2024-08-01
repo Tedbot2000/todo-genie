@@ -2,6 +2,17 @@ from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 from .models import Todo
 
+# def todo_list(request):
+#     todos = Todo.objects.all()
+#     if request.method == 'POST':
+#         form = TodoForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('todo_list')
+#     else:
+#         form = TodoForm()
+#     return render(request, 'todo/todo_list.html', {'todos': todos, 'form': form})
+
 def todo_list(request):
     if request.method == 'POST':
         task = request.POST.get('task')

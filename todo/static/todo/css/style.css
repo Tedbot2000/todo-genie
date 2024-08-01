@@ -1,0 +1,67 @@
+/* Improve the contrast of placeholders */
+/* Taken from https://inclusive-components.design/a-todo-list/ */
+::-webkit-input-placeholder { 
+    color: #444;
+    font-style: italic;
+  }
+  ::-moz-placeholder { 
+    color: #444;
+    font-style: italic;
+  }
+  :-ms-input-placeholder { 
+    color: #444;
+    font-style: italic;
+  }
+  :-moz-placeholder { 
+    color: #444;
+    font-style: italic;
+  }
+
+  /* overide default bootstrap button colours */
+  .input-box.button input {
+    color: #fff;
+    letter-spacing: 1px;
+    border: none;
+    background: #007bff; /* Vibrant Blue for primary button */
+    cursor: pointer;
+  }
+  
+  .input-box.button input:hover {
+    background: #0056b3; /* Royal Blue for hover effect */
+  }
+  
+  .btn-danger {
+    background-color: #dc3545; /* Red for delete button */
+    color: white;
+  }
+  
+  .btn-danger:hover {
+    background-color: #c82333; /* Dark Red for hover effect */
+  }
+  
+  .btn-success {
+    background-color: #28a745; /* Green for finished button */
+    color: white;
+  }
+  
+  .btn-success:hover {
+    background-color: #218838; /* Darker Green for hover effect */
+  }
+  
+  .btn-primary {
+    background-color: #007bff; /* Vibrant Blue for primary button */
+    color: white;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3; /* Royal Blue for hover effect */
+  }
+  
+  .btn-logout {
+    background-color: #dc143c; /* Crimson for logout button */
+    color: white;
+  }
+  
+  .btn-logout:hover {
+    background-color: #c82333; /* Dark Red for hover effect */
+  }
