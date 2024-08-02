@@ -1,3 +1,55 @@
+/* Main section height 100% of viewport */
+.vh-100 {
+  height: 100vh;
+  background-color: #007bff;
+}
+
+/* Container padding */
+.container {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+/* Card styling */
+.card {
+  border-radius: .75rem;
+}
+
+/* Card body padding */
+.card-body {
+  padding: 2rem;
+}
+
+/* Text center alignment */
+.text-center {
+  text-align: center;
+}
+
+/* Margin and padding for headings */
+.my-3 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.pb-3 {
+  padding-bottom: 1rem;
+}
+
+/* Form styles */
+.form-outline {
+  margin-bottom: 1rem;
+}
+
+/* Margin for table */
+.mb-4 {
+  margin-bottom: 1.5rem;
+}
+
+/* Additional styles for buttons */
+.ms-1 {
+  margin-left: .25rem;
+}
+
 /* Improve the contrast of placeholders */
 /* Taken from https://inclusive-components.design/a-todo-list/ */
 ::-webkit-input-placeholder { 
@@ -16,13 +68,14 @@
     color: #444;
     font-style: italic;
   }
-
+  
   /* overide default bootstrap button colours */
   .input-box.button input {
     color: #fff;
     letter-spacing: 1px;
     border: none;
     background: #007bff; /* Vibrant Blue for primary button */
+    background: #000;
     cursor: pointer;
   }
   
