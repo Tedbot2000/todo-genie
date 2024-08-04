@@ -42,12 +42,16 @@
                                             <td>{{ i.todo_name }}</td>
                                             <td>{{ i.status|yesno:"Completed,In progress" }}</td>
                                             <td>
-                                                <a href="{% url 'delete' i.todo_name %}">
-                                                    <button type="button" class="btn btn-danger">Delete</button>
-                                                </a>
-                                                <a href="{% url 'update' i.todo_name %}">
-                                                    <button type="button" class="btn btn-success ms-1">Completed</button>
-                                                </a>
+                                                <div class="btn-group" role="group"></div>
+                                                    <a href="{% url 'delete' i.todo_name %}" class="d-inline-block">
+                                                        <button type="button" class="btn btn-danger">Delete</button>
+                                                    </a>
+                                                    <a href="{% url 'toggle_status' i.todo_name %}">
+                                                        <button type="button" class="btn btn-success ms-1" class="d-inline-block">
+                                                            {{ i.status|yesno:"Mark as In progress,Mark as Completed" }}
+                                                        </button>
+                                                    </a>
+                                                </div>
                                             </td>
                                         </tr>
                                     {% endfor %}
