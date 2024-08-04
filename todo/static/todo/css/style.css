@@ -1,3 +1,10 @@
+body {
+  background: url("/static/images/genie.jpeg") 40% 0 no-repeat;
+}
+/* remove spacing between buttons */
+a.d-inline-block {
+  margin: 0;
+}
 /* Main section height 100% of viewport */
 .vh-100 {
   height: 100vh;
