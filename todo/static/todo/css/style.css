@@ -1,5 +1,12 @@
 body {
-  background: url("/static/images/genie.jpeg") 40% 0 no-repeat;
+  background-color: #0F242B;
+  color: #0F242B;
+  background: url("/static/images/inspiration-background.jpg");
+  background-repeat: no-repeat;
+}
+body < img {
+  width: 100%;
+  height: 100%;
 }
 /* remove spacing between buttons */
 a.d-inline-block {
@@ -8,7 +15,25 @@ a.d-inline-block {
 /* Main section height 100% of viewport */
 .vh-100 {
   height: 100vh;
-  background-color: #007bff;
+  /* background-color: #2C362B;
+  background: url("/static/images/backgroundtile.png");
+  background-repeat: repeat; */
+}
+
+.navbar-brand {
+  padding: 0;
+}
+img {
+  width: 96px; 
+}
+.brand-text {
+  font-family: "Konkhmer Sleokchher", sans-serif;
+  color: #0F242B
+}
+.brand-text-lite {
+  font-family: "Konkhmer Sleokchher", sans-serif;
+  font-weight: 600;
+  color: #DFAD38
 }
 
 /* Container padding */
@@ -81,7 +106,7 @@ a.d-inline-block {
     color: #fff;
     letter-spacing: 1px;
     border: none;
-    background: #007bff; /* Vibrant Blue for primary button */
+    background: #DFAD38; /* Vibrant Blue for primary button */
     background: #000;
     cursor: pointer;
   }
@@ -109,12 +134,13 @@ a.d-inline-block {
   }
   
   .btn-primary {
-    background-color: #007bff; /* Vibrant Blue for primary button */
+    background-color: #DFAD38 /* Vibrant Blue for primary button */
     color: white;
   }
-  
+
   .btn-primary:hover {
-    background-color: #0056b3; /* Royal Blue for hover effect */
+   /* background-color: #D89630; */
+    background-color: #91A6FF; /* Royal Blue for hover effect */
   }
   
   .btn-logout {
