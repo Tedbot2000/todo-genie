@@ -12,14 +12,21 @@
     <title>{% block title %}ToDo Genie{% endblock %}</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <!-- Reference the CSS file -->
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'todo/css/style.css' %}">
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'icons/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'icons/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'icons/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'icons/site.webmanifest' %}">
+    <!-- Google Font-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Konkhmer Sleokchher">
 </head>
-<body>
+<body id="bootstrap-overrides">
     <!-- Navigation bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">ToDo Genie</a>
+            <a class="navbar-brand brand-text" href="#"><img src="{% static 'images/genielogosmall.png' %}">ToDo <span class="brand-text-lite">G</span>enie</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
