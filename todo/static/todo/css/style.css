@@ -3,6 +3,7 @@ body {
   color: #0F242B;
   background: url("/static/images/inspiration-background.jpg");
   background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 body < img {
   width: 100%;
