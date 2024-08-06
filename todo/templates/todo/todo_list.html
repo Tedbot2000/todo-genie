@@ -18,7 +18,7 @@
                             {% csrf_token %}
                             <div class="col-12">
                                 <div class="form-outline">
-                                    <input type="text" id="form1" class="form-control" name="task" placeholder="Enter an item ToDo" aria-label="Enter an item to do">
+                                    <input type="text" id="form1" class="form-control" name="task" placeholder="Enter an item ToDo" aria-label="Enter an item to do" required>
                                 </div>                                    
                             </div>
                             <div class="col-12">
@@ -37,7 +37,7 @@
                                 </thead>
                                 <tbody>
                                     <!-- Loop through each ToDo list item and display it -->
-                                    {% for i in todos %}
+                                    <!-- {% for i in todos %}
                                         <tr>
                                             <td>{{ i.todo_name }}</td>
                                             <td>{{ i.status|yesno:"Completed,In progress" }}</td>
@@ -53,6 +53,49 @@
                                                     </a>
                                                 </div>
                                             </td>
+                                        </tr>                                       
+                                    {% endfor %} -->
+                                    {% for i in todos %}
+                                        <tr>
+                                            <td>{{ i.todo_name }}</td>
+                                            <td>
+                                                <a href="{% url 'toggle_status' i.todo_name %}">
+                                                    <button type="button" class="btn btn-success ms-1">
+                                                        {% if i.status == "Not Started" %}
+                                                            Not Started
+                                                        {% elif i.status == "In Progress" %}
+                                                            In Progress
+                                                        {% else %}
+                                                            Completed
+                                                        {% endif %}
+                                                    </button>
+                                                </a>
+                                                <!-- {% if i.status == "Not Started" %}
+                                                    Not Started
+                                                {% elif i.status == "In Progress" %}
+                                                    In Progress
+                                                {% else %}
+                                                    Completed
+                                                {% endif %} -->
+                                            </td>
+                                            <td>
+                                                <div class="btn-group" role="group">
+                                                    <a href="{% url 'delete' i.todo_name %}" class="d-inline-block">
+                                                        <button type="button" class="btn btn-danger">Delete</button>
+                                                    </a>
+                                                    <!-- <a href="{% url 'toggle_status' i.todo_name %}">
+                                                        <button type="button" class="btn btn-success ms-1">
+                                                            {% if i.status == "Not Started" %}
+                                                                Not Started - Mark as In Progress
+                                                            {% elif i.status == "In Progress" %}
+                                                                In Progress - Mark as Completed
+                                                            {% else %}
+                                                                Completed - Mark as Not Started
+                                                            {% endif %}
+                                                        </button>
+                                                    </a> -->
+                                                </div>
+                                            </td>
                                         </tr>
                                     {% endfor %}
                                 </tbody>
@@ -64,4 +107,5 @@
         </div>
     </div>
 </main>
+
 {% endblock %}

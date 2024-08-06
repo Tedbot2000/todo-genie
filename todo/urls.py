@@ -8,7 +8,3 @@ urlpatterns = [
     path('update/<str:task_name>/', update_task, name='update'),
     path('toggle/<str:todo_name>/', views.toggle_status, name='toggle_status'),
 ]
-
-# urlpatterns = [ 
-#     path('', views.HomePage.as_view(), name='home'), 
-# ]
