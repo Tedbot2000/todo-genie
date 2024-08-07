@@ -55,7 +55,17 @@
                                         <tr>
                                             <td>{{ i.todo_name }}</td>
                                             <td>
-                                                <a href="{% url 'toggle_status' i.todo_name %}">
+                                                    <button type="button" class="btn btn-success ms-1" onclick="toggleStatus('{% url 'toggle_status' i.todo_name %}')">
+                                                        {% if i.status == "Not Started" %}
+                                                            Not Started
+                                                        {% elif i.status == "In Progress" %}
+                                                            In Progress
+                                                        {% else %}
+                                                            Completed
+                                                        {% endif %}
+                                                    </button>
+
+                                                <!-- <a href="{% url 'toggle_status' i.todo_name %}">
                                                     <button type="button" class="btn btn-success ms-1">
                                                         {% if i.status == "Not Started" %}
                                                             Not Started
@@ -65,13 +75,13 @@
                                                             Completed
                                                         {% endif %}
                                                     </button>
-                                                </a>
+                                                </a> -->
                                             </td>
                                             <td>
                                                 <div class="btn-group" role="group">
-                                                    <a href="{% url 'delete' i.todo_name %}" class="d-inline-block" onclick="confirmDelete(event)">
-                                                        <button type="button" class="btn btn-danger">Delete</button>
-                                                    </a>
+                                                    <button type="button" class="btn btn-danger" onclick="confirmDeleteAndRedirect('{% url 'delete' i.todo_name %}')">
+                                                        Delete
+                                                    </button>
                                                 </div>
                                             </td>
                                         </tr>
