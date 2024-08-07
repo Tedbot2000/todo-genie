@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}ToDo List - ToDo Genie{% endblock %}
 
 {% block content %}
@@ -11,7 +11,8 @@
                 <article class="card rounded-3">
                     <div class="card-body p-4">
                         <header>
-                            <h1 class="text-center my-3 pb-3">ToDo Genie</h1>
+                            <img class="img-center" src="{% static 'images/genielogosmall.png' %}" alt="Genie Logo">
+                            <p class="text-center brand-text">ToDo <span class="brand-text-lite">G</span>enie</p>
                         </header>
                         <!-- Form for adding new ToDo items -->
                         <form method="POST" class="row g-3 justify-content-center align-items-center mb-4 pb-2">
