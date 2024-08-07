@@ -14,12 +14,25 @@
                             <img class="img-center" src="{% static 'images/genielogosmall.png' %}" alt="Genie Logo">
                             <p class="text-center brand-text">ToDo <span class="brand-text-lite">G</span>enie</p>
                         </header>
+
+                        <!-- Display messages -->
+                        {% if messages %}
+                        <div class="messages">
+                            {% for message in messages %}
+                                <div class="alert {% if message.tags %}alert-{{ message.tags }}{% else %}alert-info{% endif %}">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+
+
                         <!-- Form for adding new ToDo items -->
                         <form method="POST" class="row g-3 justify-content-center align-items-center mb-4 pb-2">
                             {% csrf_token %}
                             <div class="col-12">
                                 <div class="form-outline">
-                                    <input type="text" id="form1" class="form-control" name="task" placeholder="Enter an item ToDo" aria-label="Enter an item to do" required>
+                                    <input type="text" id="form1" class="form-control" name="task" placeholder="Enter a task to do" aria-label="Enter an item to do" required>
                                 </div>                                    
                             </div>
                             <div class="col-12">
@@ -108,5 +121,8 @@
         </div>
     </div>
 </main>
+
+<!-- external JavaScript -->
+<script src="{% static 'todo/js/message_timeout.js' %}"></script>
 
 {% endblock %}
