@@ -51,24 +51,6 @@
                                 </thead>
                                 <tbody>
                                     <!-- Loop through each ToDo list item and display it -->
-                                    <!-- {% for i in todos %}
-                                        <tr>
-                                            <td>{{ i.todo_name }}</td>
-                                            <td>{{ i.status|yesno:"Completed,In progress" }}</td>
-                                            <td>
-                                                <div class="btn-group" role="group"></div>
-                                                    <a href="{% url 'delete' i.todo_name %}" class="d-inline-block">
-                                                        <button type="button" class="btn btn-danger">Delete</button>
-                                                    </a>
-                                                    <a href="{% url 'toggle_status' i.todo_name %}">
-                                                        <button type="button" class="btn btn-success ms-1" class="d-inline-block">
-                                                            {{ i.status|yesno:"Mark as In progress,Mark as Completed" }}
-                                                        </button>
-                                                    </a>
-                                                </div>
-                                            </td>
-                                        </tr>                                       
-                                    {% endfor %} -->
                                     {% for i in todos %}
                                         <tr>
                                             <td>{{ i.todo_name }}</td>
@@ -84,30 +66,12 @@
                                                         {% endif %}
                                                     </button>
                                                 </a>
-                                                <!-- {% if i.status == "Not Started" %}
-                                                    Not Started
-                                                {% elif i.status == "In Progress" %}
-                                                    In Progress
-                                                {% else %}
-                                                    Completed
-                                                {% endif %} -->
                                             </td>
                                             <td>
                                                 <div class="btn-group" role="group">
-                                                    <a href="{% url 'delete' i.todo_name %}" class="d-inline-block">
+                                                    <a href="{% url 'delete' i.todo_name %}" class="d-inline-block" onclick="confirmDelete(event)">
                                                         <button type="button" class="btn btn-danger">Delete</button>
                                                     </a>
-                                                    <!-- <a href="{% url 'toggle_status' i.todo_name %}">
-                                                        <button type="button" class="btn btn-success ms-1">
-                                                            {% if i.status == "Not Started" %}
-                                                                Not Started - Mark as In Progress
-                                                            {% elif i.status == "In Progress" %}
-                                                                In Progress - Mark as Completed
-                                                            {% else %}
-                                                                Completed - Mark as Not Started
-                                                            {% endif %}
-                                                        </button>
-                                                    </a> -->
                                                 </div>
                                             </td>
                                         </tr>
@@ -123,6 +87,8 @@
 </main>
 
 <!-- external JavaScript -->
-<script src="{% static 'todo/js/message_timeout.js' %}"></script>
+<script src="{% static 'todo/js/javascript.js' %}"></script>
+<!-- <script src="{% static 'todo/js/message_timeout.js' %}"></script>
+<script src="{% static 'todo/js/confirm_delete.js' %}"></script> -->
 
 {% endblock %}
