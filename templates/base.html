@@ -19,7 +19,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'icons/favicon-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'icons/favicon-16x16.png' %}">
     <link rel="manifest" href="{% static 'icons/site.webmanifest' %}">
-    <!-- Google Font-->
+    <!-- Google Font (licensed from The Konkhmer Sleokchher Project under the SIL Open Font License, Version 1.1.) -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Konkhmer%20Sleokchher">
 </head>
 <body id="bootstrap-overrides">
@@ -34,6 +34,28 @@
                 <ul class="navbar-nav ms-auto">
                     {% if user.is_authenticated %}
                         <li class="nav-item">
+                            <span class="nav-link">You are logged in as {{ user.username }}</span>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == logout_url %}active{% endif %}" aria-current="page" href="{{ logout_url }}">Logout</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <span class="nav-link">You are not currently logged in</span>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == signup_url %}active{% endif %}" aria-current="page" href="{{ signup_url }}">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == login_url %}active{% endif %}" aria-current="page" href="{{ login_url }}">Login</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+            <!-- <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
                             <a class="nav-link {% if request.path == logout_url %}active{% endif %}" aria-current="page" href="{{ logout_url }}">Logout</a>
                         </li>
                     {% else %}
@@ -45,7 +67,7 @@
                         </li>
                     {% endif %}
                 </ul>
-            </div>
+            </div> -->
         </div>
     </nav>
 

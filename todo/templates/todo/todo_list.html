@@ -7,7 +7,8 @@
 <main class="vh-100">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-lg-9 col-xl-7">
+            <!-- <div class="col-lg-9 col-xl-7"> -->
+            <div class="col-lg-12 col-xl-11">
                 <article class="card rounded-3">
                     <div class="card-body p-4">
                         <header>
@@ -25,7 +26,6 @@
                             {% endfor %}
                         </div>
                         {% endif %}
-
 
                         <!-- Form for adding new ToDo items -->
                         <form method="POST" class="row g-3 justify-content-center align-items-center mb-4 pb-2">
@@ -54,8 +54,9 @@
                                     {% for i in todos %}
                                         <tr>
                                             <td>{{ i.todo_name }}</td>
-                                            <td>
-                                                    <button type="button" class="btn btn-success ms-1" onclick="toggleStatus('{% url 'toggle_status' i.todo_name %}')">
+                                                <td>
+                                                    <!-- Give the buttons differet colours representing their toggle state -->
+                                                    <button type="button" class="btn ms-1 toggle-button {% if i.status == "Not Started" %}btn-secondary{% elif i.status == "In Progress" %}btn-warning{% else %}btn-success{% endif %}" onclick="toggleStatus('{% url 'toggle_status' i.todo_name %}')">
                                                         {% if i.status == "Not Started" %}
                                                             Not Started
                                                         {% elif i.status == "In Progress" %}
@@ -64,19 +65,7 @@
                                                             Completed
                                                         {% endif %}
                                                     </button>
-
-                                                <!-- <a href="{% url 'toggle_status' i.todo_name %}">
-                                                    <button type="button" class="btn btn-success ms-1">
-                                                        {% if i.status == "Not Started" %}
-                                                            Not Started
-                                                        {% elif i.status == "In Progress" %}
-                                                            In Progress
-                                                        {% else %}
-                                                            Completed
-                                                        {% endif %}
-                                                    </button>
-                                                </a> -->
-                                            </td>
+                                                </td>
                                             <td>
                                                 <div class="btn-group" role="group">
                                                     <button type="button" class="btn btn-danger" onclick="confirmDeleteAndRedirect('{% url 'delete' i.todo_name %}')">
@@ -98,7 +87,5 @@
 
 <!-- external JavaScript -->
 <script src="{% static 'todo/js/javascript.js' %}"></script>
-<!-- <script src="{% static 'todo/js/message_timeout.js' %}"></script>
-<script src="{% static 'todo/js/confirm_delete.js' %}"></script> -->
 
 {% endblock %}

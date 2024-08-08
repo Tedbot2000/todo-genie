@@ -1,5 +1,5 @@
 body {
-    background-color: #0F242B;
+    background-color: #DFAD38;
     color: #0F242B;
     background: url("/static/images/inspiration-background.jpg");
     background-repeat: no-repeat;
@@ -16,7 +16,7 @@ body {
       margin-left: auto;
       margin-right: auto;
   }
-  
+
   /* remove spacing between buttons */
   a.d-inline-block {
     margin: 0;
@@ -83,7 +83,10 @@ body {
   .ms-1 {
     margin-left: .25rem;
   }
-      
+  /* Make status toggle buttons the same width */
+  .btn.ms-1.toggle-button {
+    width: 200px;
+}
   /* overide default bootstrap button colours */
   .input-box.button input {
     color: #fff;

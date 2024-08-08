@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Todo
 
+@login_required
 def todo_list(request):
     """
     Displays a list of all todo items and allows creation of new todo items.
