@@ -1,11 +1,12 @@
 body {
     background-color: #DFAD38;
     color: #0F242B;
+    font-family: "Roboto", sans-serif;
     background: url("/static/images/inspiration-background.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center center;
-    background-size: cover;
+    background-size: cover;    
   }
   body < img {
     width: 100%;
@@ -22,7 +23,7 @@ body {
     margin: 0;
   }
   /* Main section height 100% of viewport */
-  .vh-100 {
+  .main-card-container {
     height: 100vh;
   }
   .navbar-brand {
@@ -30,6 +31,7 @@ body {
   }
   .brand-text {
     font-family: "Konkhmer Sleokchher", sans-serif;
+    font-size: large;
     color: #0F242B
   }
   .brand-text-lite {
@@ -52,6 +54,13 @@ body {
   /* Card body padding */
   .card-body {
     padding: 2rem;
+  }
+
+  /* Instructions section */
+  .instructions {
+    padding-top: 50px;
+    font-weight: 400;
+    font-size: larger;
   }
   
   /* Text center alignment */
@@ -83,11 +92,12 @@ body {
   .ms-1 {
     margin-left: .25rem;
   }
-  /* Make status toggle buttons the same width */
+  /* Make status toggle buttons the same width regardless of content */
   .btn.ms-1.toggle-button {
     width: 200px;
 }
-  /* overide default bootstrap button colours */
+
+  /*Overide default bootstrap button colours */
   .input-box.button input {
     color: #fff;
     letter-spacing: 1px;
@@ -137,3 +147,42 @@ body {
   .btn-logout:hover {
     background-color: #c82333; /* Dark Red for hover effect */
   }
+
+/* Media query to target smaller screens */
+@media (max-width: 768px) {
+
+  /* Hide the first table header cell (ToDo) */
+  .table th:first-child {
+    display: none;
+  }
+
+  /* Change the display property of the table headers and cells */
+  .table th, .table td {
+    display: block;
+  }
+
+  /* Adjust the size of the Status toggle button */
+  .btn.ms-1.toggle-button {
+    width: 120px;
+    height: 38px;
+    padding: 0.25rem 0.5rem;
+  }
+
+  /* add some margin to separate the buttons */
+  .btn.ms-1.delete-button {
+    margin-left: 0.25rem;
+  }
+
+  /* Move the ToDo Items field above the Status and Actions fields */
+  .table th:first-child, .table td:first-child {
+    width: 100%;
+    text-align: left;
+  }
+
+  /* Adjust the layout of the Status and Actions fields */
+  .table th:nth-child(2), .table th:nth-child(3), .table td:nth-child(2), .table td:nth-child(3) {
+    width: 40%;
+    display: inline-block;
+  }
+
+}
