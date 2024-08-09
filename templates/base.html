@@ -37,20 +37,20 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     {% if user.is_authenticated %}
-                        <li class="nav-item">
+                        <li class="nav-item ms-auto">
                             <span class="nav-link">You are logged in as {{ user.username }}</span>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item ms-auto">
                             <a class="nav-link {% if request.path == logout_url %}active{% endif %}" aria-current="page" href="{{ logout_url }}">Logout</a>
                         </li>
                     {% else %}
-                        <li class="nav-item">
+                        <li class="nav-item ms-auto">
                             <span class="nav-link">You are not currently logged in</span>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item ms-auto">
                             <a class="nav-link {% if request.path == signup_url %}active{% endif %}" aria-current="page" href="{{ signup_url }}">Register</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item ms-auto">
                             <a class="nav-link {% if request.path == login_url %}active{% endif %}" aria-current="page" href="{{ login_url }}">Login</a>
                         </li>
                     {% endif %}
