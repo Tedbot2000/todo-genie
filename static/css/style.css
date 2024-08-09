@@ -39,7 +39,7 @@ body {
     font-weight: 600;
     color: #DFAD38
   }
-  
+   
   /* Container padding */
   .container {
     padding-top: 5rem;
@@ -96,57 +96,6 @@ body {
   .btn.ms-1.toggle-button {
     width: 200px;
 }
-
-  /*Overide default bootstrap button colours */
-  .input-box.button input {
-    color: #fff;
-    letter-spacing: 1px;
-    border: none;
-    background: #DFAD38; /* Vibrant Blue for primary button */
-    background: #000;
-    cursor: pointer;
-  }
-  
-  .input-box.button input:hover {
-    background: #0056b3; /* Royal Blue for hover effect */
-  }
-  
-  .btn-danger {
-    background-color: #dc3545; /* Red for delete button */
-    color: white;
-  }
-  
-  .btn-danger:hover {
-    background-color: #c82333; /* Dark Red for hover effect */
-  }
-  
-  .btn-success {
-    background-color: #28a745; /* Green for finished button */
-    color: white;
-  }
-  
-  .btn-success:hover {
-    background-color: #218838; /* Darker Green for hover effect */
-  }
-  
-  .btn-primary {
-    background-color: #DFAD38 /* Vibrant Blue for primary button */
-    color: white;
-  }
-
-  .btn-primary:hover {
-    /* background-color: #D89630; */
-    background-color: #91A6FF; /* Royal Blue for hover effect */
-  }
-  
-  .btn-logout {
-    background-color: #dc143c; /* Crimson for logout button */
-    color: white;
-  }
-  
-  .btn-logout:hover {
-    background-color: #c82333; /* Dark Red for hover effect */
-  }
 
 /* Media query to target smaller screens */
 @media (max-width: 768px) {
