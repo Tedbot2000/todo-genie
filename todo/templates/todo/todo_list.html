@@ -4,7 +4,7 @@
 
 {% block content %}
 <!-- Main section covering full viewport height -->
-<main class="vh-100">
+<section class="vh-100 main-card-container">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <!-- <div class="col-lg-9 col-xl-7"> -->
@@ -15,7 +15,9 @@
                             <img class="img-center" src="{% static 'images/genielogosmall.png' %}" alt="Genie Logo">
                             <p class="text-center brand-text">ToDo <span class="brand-text-lite">G</span>enie</p>
                         </header>
-
+                        <section class="instructions">
+                            <p>Add tasks using the text box and then prioritise or delete tasks using the Status and Actions buttons.</p>
+                        </section>
                         <!-- Display messages -->
                         {% if messages %}
                         <div class="messages">
@@ -32,11 +34,11 @@
                             {% csrf_token %}
                             <div class="col-12">
                                 <div class="form-outline">
-                                    <input type="text" id="form1" class="form-control" name="task" placeholder="Enter a task to do" aria-label="Enter an item to do" required>
+                                    <input type="text" id="form1" class="form-control" name="task" placeholder="Enter a task to do" aria-label="Enter a task to do" required>
                                 </div>                                    
                             </div>
                             <div class="col-12">
-                                <button type="submit" class="btn btn-primary">Add Item</button>
+                                <button type="submit" class="btn btn-primary">Add Task</button>
                             </div>
                         </form>
                         <!-- Table displaying ToDo items -->
@@ -44,19 +46,19 @@
                             <table class="table mb-4">
                                 <thead>
                                     <tr>                                        
-                                        <th>ToDo Items</th>
+                                        <th>ToDo</th>
                                         <th>Status</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <!-- Loop through each ToDo list item and display it -->
+                                    <!-- Loop through each ToDo list item and display it --> 
                                     {% for i in todos %}
                                         <tr>
                                             <td>{{ i.todo_name }}</td>
                                                 <td>
                                                     <!-- Give the buttons differet colours representing their toggle state -->
-                                                    <button type="button" class="btn ms-1 toggle-button {% if i.status == "Not Started" %}btn-secondary{% elif i.status == "In Progress" %}btn-warning{% else %}btn-success{% endif %}" onclick="toggleStatus('{% url 'toggle_status' i.todo_name %}')">
+                                                    <button type="button" class="btn ms-1 toggle-button {% if i.status == "Not Started" %}btn-secondary{% elif i.status == "In Progress" %}btn-warning{% else %}btn-success{% endif %}" onclick="toggleStatus('{% url 'toggle_status' i.id %}')">
                                                         {% if i.status == "Not Started" %}
                                                             Not Started
                                                         {% elif i.status == "In Progress" %}
@@ -64,11 +66,11 @@
                                                         {% else %}
                                                             Completed
                                                         {% endif %}
-                                                    </button>
+                                                    </button>                                                    
                                                 </td>
                                             <td>
                                                 <div class="btn-group" role="group">
-                                                    <button type="button" class="btn btn-danger" onclick="confirmDeleteAndRedirect('{% url 'delete' i.todo_name %}')">
+                                                    <button type="button" class="btn btn-danger" onclick="confirmDeleteAndRedirect('{% url 'delete' i.id %}')"> 
                                                         Delete
                                                     </button>
                                                 </div>
@@ -83,7 +85,7 @@
             </div>
         </div>
     </div>
-</main>
+</section>
 
 <!-- external JavaScript -->
 <script src="{% static 'todo/js/javascript.js' %}"></script>

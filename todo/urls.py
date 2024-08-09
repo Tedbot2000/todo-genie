@@ -4,7 +4,7 @@ from .views import todo_list, delete_task, update_task
 
 urlpatterns = [
     path('', todo_list, name='todo_list'),
-    path('delete/<str:task_name>/', delete_task, name='delete'),
-    path('update/<str:task_name>/', update_task, name='update'),
-    path('toggle/<str:todo_name>/', views.toggle_status, name='toggle_status'),
+    path('toggle_status/<int:id>/', views.toggle_status, name='toggle_status'),
+    path('delete/<int:id>/', views.delete_task, name='delete'),
+    path('update/<int:id>/', views.update_task, name='update'),
 ]
