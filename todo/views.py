@@ -13,10 +13,13 @@ def todo_list(request):
     if request.method == 'POST':
         task = request.POST.get('task')
         if task:
-            Todo.objects.create(todo_name=task)
-            # if the task name is over 20 chars long, truncate it in message and add ellipsis
-            task_display = task[:20] + ("..." if len(task) > 20 else "")
-            messages.success(request, f'Task "{task_display}" added successfully!')
+            if len(task) > 60:
+                messages.error(request, 'Task name cannot be more than 60 characters long.')
+            else:
+                Todo.objects.create(todo_name=task)
+                # if the task name is over 20 chars long, truncate it in message and add ellipsis
+                task_display = task[:20] + ("..." if len(task) > 20 else "")
+                messages.success(request, f'Task "{task_display}" added successfully!')
         else:
             messages.error(request, 'Task cannot be empty.')
         return redirect('todo_list')
@@ -38,16 +41,6 @@ def toggle_status(request, id):
     todo_display = todo.todo_name[:20] + ("..." if len(todo.todo_name) > 20 else "")
     messages.success(request, f'Status of "{todo_display}" updated to {todo.status}.')
     return redirect('todo_list')    
-
-
-# def delete_todo(request, id):
-#     """
-#     Deletes a todo item by its ID.
-#     """
-#     todo = get_object_or_404(Todo, id=id)
-#     todo.delete()
-#     messages.success(request, 'Task deleted successfully.')
-#     return redirect('todo_list')
 
 def delete_task(request, id):
     """
