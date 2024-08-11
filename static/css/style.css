@@ -1,4 +1,7 @@
 body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Full viewport height */
     background-color: #DFAD38;
     color: #0F242B;
     font-family: "Roboto", sans-serif;
@@ -24,13 +27,18 @@ body {
       margin-right: auto;
   }
 
+  main {
+    flex: 1; /* make main content area grow to fill the available space */
+  }
+
   /* remove spacing between buttons */
   a.d-inline-block {
     margin: 0;
   }
   /* Main section height 100% of viewport */
   .main-card-container {
-    height: 100vh;
+    height: 100vh
+    /* margin-bottom: 3rem; */
   }
   .navbar-brand {
     padding: 0;
@@ -48,8 +56,8 @@ body {
    
   /* Container padding */
   .container {
-    padding-top: 5rem;
-    padding-bottom: 5rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
   }
   
   /* Card styling */
@@ -109,8 +117,19 @@ body {
     width: 200px;
 }
 
+footer {
+  margin-top: auto; /* Pushes the footer to the bottom */
+  background-color: #0F242B;
+}
+
 /* Media query to target smaller than tablet screens */
 @media (max-width: 768px) {
+
+  /* Reduce top and bottom padding */
+  .container {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+  }
 
   /* Hide the first table header cell (Task To Do) */
   .table th:first-child {
@@ -140,6 +159,11 @@ body {
   .table th:nth-child(2), .table th:nth-child(3), .table td:nth-child(2), .table td:nth-child(3) {
     width: 40%;
     display: inline-block;
+  }
+
+  /* Push the footer down on small screens */
+  .main-card-container {
+    height: auto;
   }
 
 }
