@@ -8,12 +8,12 @@
 <div class="container">
     <div class="card rounded-3">
         <div class="card-body custom-card-body p-6">
-            <!-- Header section -->
-            <section aria-label="Header">
-                <header>
-                    <img class="img-center" src="{% static 'images/genielogosmall.png' %}" alt="Genie Logo">
+            <!-- Card Header section -->
+            <section aria-label="ToDo Genie Card Header">
+                <section role="title">
+                    <img class="img-center" src="{% static 'images/genielogosmall.png' %}" alt="ToDo Genie Logo: A stylised, gold and dark grey illustration of a genie's lamp with a genie emerging from it, symbolizing the app's name and purpose.">
                     <p class="text-center brand-text">ToDo <span class="brand-text-lite">G</span>enie</p>
-                </header>
+                </section>
             </section>
 
             <!-- Confirmation section -->
@@ -36,8 +36,8 @@
                             {% if redirect_field_value %}
                             <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                             {% endif %}
-                            <button class="btn btn-danger" type="submit">{% trans 'Log Out' %}</button>
-                            <button type="button" class="btn btn-primary" onclick="history.back()">
+                            <button class="btn btn-danger" aria-label="Confirm Delete" type="submit">{% trans 'Log Out' %}</button>
+                            <button type="button" class="btn btn-primary" aria-label="Go Back" onclick="history.back()">
                                 Go Back
                             </button>
                         </form>

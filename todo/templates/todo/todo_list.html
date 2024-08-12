@@ -12,15 +12,15 @@
                     <div class="card rounded-3">
                         <div class="card-body p-4">
                             <!-- Header section -->
-                            <section aria-label="Header">
-                                <header>
-                                    <img class="img-center" src="{% static 'images/genielogosmall.png' %}" alt="ToDo Genie Logo">
+                            <section aria-label="ToDo Genie Card Header">
+                                <section role="title">
+                                    <img class="img-center" src="{% static 'images/genielogosmall.png' %}" alt="ToDo Genie Logo: A stylised, gold and dark grey illustration of a genie's lamp with a genie emerging from it, symbolizing the app's name and purpose.">
                                     <p class="text-center brand-text">ToDo <span class="brand-text-lite">G</span>enie</p>
-                                </header>
+                                </section>
                             </section>
 
                             <!-- Instructions section -->
-                            <section aria-label="Instructions">
+                            <section role="region" aria-label="Instructions">
                                 <div class="instructions">
                                     <p>Welcome to ToDo Genie. Add tasks using the text box and then prioritise or delete tasks using the Status and Actions buttons.</p>
                                 </div>
@@ -29,7 +29,7 @@
                             <!-- Display messages -->
                             {% if messages %}
                             <section aria-label="Messages">
-                                <div class="messages">
+                                <div class="messages" role="alert" aria-live="polite">
                                     {% for message in messages %}
                                     <div class="alert {% if message.tags %}alert-{{ message.tags }}{% else %}alert-info{% endif %}">
                                         {{ message }}
@@ -41,7 +41,7 @@
 
                             <!-- Form for adding new tasks to do -->
                             <section aria-label="Add Task Form">
-                                <form method="POST" class="row g-3 justify-content-center align-items-center mb-4 pb-2">
+                                <form method="POST" class="row g-3 justify-content-center align-items-center mb-4 pb-2" role="form">
                                     {% csrf_token %}
                                     <div class="col-12">
                                         <label for="task" class="form-label">Add a task to do:</label>
@@ -57,7 +57,7 @@
                             <section aria-label="Task List">
                                 <h4 class="text-center">Your Tasks</h4>
                                 <hr>
-                                <table class="table mb-4">
+                                <table class="table mb-4" role="grid">
                                     <thead>
                                         <tr>
                                             <th>Task To Do</th>
@@ -72,7 +72,7 @@
                                             <td>{{ i.todo_name }}</td>
                                             <td>
                                                 <!-- Give the buttons different colours representing their toggle state -->
-                                                <button type="button" class="btn ms-1 toggle-button {% if i.status == "Not Started" %}btn-secondary{% elif i.status == "In Progress" %}btn-warning{% else %}btn-success{% endif %}" onclick="toggleStatus('{% url 'toggle_status' i.id %}')">
+                                                <button type="button" aria-label="Toggle status" aria-pressed="false" class="btn ms-1 toggle-button {% if i.status == "Not Started" %}btn-secondary{% elif i.status == "In Progress" %}btn-warning{% else %}btn-success{% endif %}" onclick="toggleStatus('{% url 'toggle_status' i.id %}')">
                                                     {% if i.status == "Not Started" %}
                                                         Not Started
                                                     {% elif i.status == "In Progress" %}
@@ -84,7 +84,7 @@
                                             </td>
                                             <td>
                                                 <div class="btn-group" role="group">
-                                                    <button type="button" class="btn btn-danger" onclick="confirmDeleteAndRedirect('{% url 'delete' i.id %}')"> 
+                                                    <button type="button" class="btn btn-danger" aria-label="Delete task" onclick="confirmDeleteAndRedirect('{% url 'delete' i.id %}')"> 
                                                         Delete
                                                     </button>
                                                 </div>
