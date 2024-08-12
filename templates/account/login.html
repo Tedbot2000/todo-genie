@@ -9,36 +9,47 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 float-left">
-            <article class="card rounded-3">
+            <div class="card rounded-3">
                 <div class="card-body custom-card-body p-6">
-                    <header>
-                        <img class="img-center" src="{% static 'images/genielogosmall.png' %}" alt="Genie Logo">
-                        <p class="text-center brand-text">ToDo <span class="brand-text-lite">G</span>enie</p>
-                    </header>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h3>{% trans "Sign In" %}</h3>
+                    <!-- Header section -->
+                    <section aria-label="Header">
+                        <header>
+                            <img class="img-center" src="{% static 'images/genielogosmall.png' %}" alt="Genie Logo">
+                            <p class="text-center brand-text">ToDo <span class="brand-text-lite">G</span>enie</p>
+                        </header>
+                    </section>
 
-                            <p>{% blocktrans %}Welcome to ToDo Genie. Your personal to-do list.
-                                Please log in to create a task list. If you
-                                have not created an account yet, then <a class="link" href="{{ signup_url }}">register</a>
-                                first.{% endblocktrans %}</p>
+                    <!-- Introduction section -->
+                    <section aria-label="Introduction">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3>{% trans "Log In" %}</h3>
+
+                                <p>{% blocktrans %}Welcome to ToDo Genie. Your personal to-do list.
+                                    Please log in to create a task list. If you
+                                    have not created an account yet, then <a class="link" href="{{ signup_url }}">register</a>
+                                    first.{% endblocktrans %}</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <form class="login" method="POST" action="{% url 'account_login' %}">
-                                {% csrf_token %}
-                                {{ form.as_p }}
-                                {% if redirect_field_value %}
-                                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-                                {% endif %}
-                                <button class="btn btn-primary" type="submit">{% trans "Sign In" %}</button>
-                            </form>
+                    </section>
+
+                    <!-- Login form section -->
+                    <section aria-label="Login Form">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form class="login" method="POST" action="{% url 'account_login' %}">
+                                    {% csrf_token %}
+                                    {{ form.as_p }}
+                                    {% if redirect_field_value %}
+                                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
+                                    {% endif %}
+                                    <button class="btn btn-primary" type="submit">{% trans "Sign In" %}</button>
+                                </form>
+                            </div>
                         </div>
-                    </div>
+                    </section>
                 </div>
-            </article>
+            </div>
         </div>
     </div>
 </div>

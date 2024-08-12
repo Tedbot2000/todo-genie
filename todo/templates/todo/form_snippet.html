@@ -1,0 +1,16 @@
+<!-- custom form to remove invalid syntax in signup.html by overriding the field help text -->
+
+<div class="form-group">
+    {{ field.label_tag }}
+    {{ field }}
+    {% if field.help_text %}
+        {{ field.help_text|safe }}
+    {% endif %}
+    {% if field.errors %}
+        <ul class="errorlist">
+            {% for error in field.errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</div>

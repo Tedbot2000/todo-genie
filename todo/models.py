@@ -8,7 +8,7 @@ class Todo(models.Model):
     """
     todo_name = models.CharField(
         max_length=60,
-        help_text="The name of the Todo item (max 60 characters)"
+        help_text="The name of the task (max 60 characters)"
     )
     status = models.CharField(
         max_length=20,
@@ -18,6 +18,6 @@ class Todo(models.Model):
             ("In Progress", "In Progress"),
             ("Completed", "Completed"),
         ],
-        help_text="The status of the Todo item (choices: Not Started, In Progress, Completed)"
+        help_text="The status of the task (choices: Not Started, In Progress, Completed)"
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
