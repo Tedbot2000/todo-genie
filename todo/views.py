@@ -6,6 +6,7 @@ from .models import Todo
 # Constant for statuses (enabling more to be added later)
 STATUSES = ["Not Started", "In Progress", "Completed"]
 
+
 @login_required
 def todo_list(request):
     """
@@ -13,19 +14,24 @@ def todo_list(request):
     """
     if request.method == 'POST':
         task = request.POST.get('task')
-        if isinstance(task, str) and task.strip():  # is task a non-empty string?
+        # is task a non-empty string?
+        if isinstance(task, str) and task.strip():
             if len(task) > 60:
-                messages.error(request, 'Task name cannot be more than 60 characters long.')
+                messages.error(request,
+                               'Task name cannot be more '
+                               'than 60 characters long.')
             else:
                 Todo.objects.create(todo_name=task, user=request.user)
-                # if task name is over 20 chars long, truncate it in message and add ellipsis
+                # if task name is over 20 chars long, truncate & add ellipsis
                 task_display = task[:20] + ("..." if len(task) > 20 else "")
-                messages.success(request, f'Task "{task_display}" added successfully!')
+                messages.success(request, f'Task "{task_display}'
+                                 '" added successfully!')
         else:
             messages.error(request, 'Task cannot be empty.')
         return redirect('todo_list')
     todos = Todo.objects.filter(user=request.user).order_by('id')
     return render(request, 'todo/todo_list.html', {'todos': todos})
+
 
 def toggle_status(request, id):
     """
@@ -36,10 +42,12 @@ def toggle_status(request, id):
     next_index = (current_index + 1) % len(STATUSES)
     todo.status = STATUSES[next_index]
     todo.save()
-    # if task name is over 20 chars long, truncate it in message and add ellipsis
-    task_display = todo.todo_name[:20] + ("..." if len(todo.todo_name) > 20 else "")
+    # if task name is over 20 chars long, truncate & add ellipsis
+    task_display = todo.todo_name[:20] + (
+        "..." if len(todo.todo_name) > 20 else "")
     messages.success(request, f'Status of "{task_display}" updated to {todo.status}.')
     return redirect('todo_list')
+
 
 def delete_task(request, id):
     """
@@ -52,6 +60,7 @@ def delete_task(request, id):
         task_display = todo.todo_name[:20] + ("..." if len(todo.todo_name) > 20 else "")
         messages.success(request, f'Task "{task_display}" deleted successfully.')
     return redirect('todo_list')
+
 
 def update_task(request, id):
     """

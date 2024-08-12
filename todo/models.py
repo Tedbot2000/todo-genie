@@ -18,6 +18,7 @@ class Todo(models.Model):
             ("In Progress", "In Progress"),
             ("Completed", "Completed"),
         ],
-        help_text="The status of the task (choices: Not Started, In Progress, Completed)"
+        help_text="The status of the task "
+        "(choices: Not Started, In Progress, Completed)"
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
