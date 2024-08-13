@@ -22,7 +22,8 @@ body {
   }
 
   main {
-    flex: 1; /* make main content area grow to fill the available space */
+    flex: 1; /* make main content area grow */
+    overflow-y: auto; /* allow main content area to scroll */
   }
 
   header {
