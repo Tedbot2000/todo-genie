@@ -41,7 +41,7 @@
                                     {% csrf_token %}
                                     <div class="col-12">
                                         <label for="task" class="form-label">Add a task to do:</label>
-                                        <input type="text" id="task" class="form-control" name="task" placeholder="Enter a task (60 characters max)" required>
+                                        <input type="text" id="task" class="form-control" name="task" placeholder="Enter a task (60 characters max)" maxlength="60" required>
                                     </div>
                                     <div class="col-12">
                                         <button type="submit" class="btn btn-primary">Add Task</button>

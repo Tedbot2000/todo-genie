@@ -75,15 +75,34 @@ def update_task(request, id):
         messages.success
 
 def edit_task(request, id):
+
     """
+
     Edits a task
+
     """
+
     todo = get_object_or_404(Todo, id=id, user=request.user)
+
     if request.method == 'POST':
+
         task_name = request.POST.get('task')
+
         if task_name:
-            todo.todo_name = task_name
-            todo.save()
-            messages.success(request, f'Task "{task_name}" updated successfully.')
-            return redirect('todo_list')
+
+            if len(task_name) > 60:
+
+                messages.error(request, 'Task name cannot be more than 60 characters long.')
+
+            else:
+
+                todo.todo_name = task_name
+
+                todo.save()
+
+                messages.success(request, f'Task "{task_name}" updated successfully.')
+
+                return redirect('todo_list')
+
     return render(request, 'todo/edit_task.html', {'todo': todo})
+    

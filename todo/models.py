@@ -8,6 +8,7 @@ class Todo(models.Model):
     """
     todo_name = models.CharField(
         max_length=60,
+        blank=False,
         help_text="The name of the task (max 60 characters)"
     )
     status = models.CharField(
