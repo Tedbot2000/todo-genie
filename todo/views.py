@@ -51,7 +51,7 @@ def toggle_status(request, id):
 
 def delete_task(request, id):
     """
-    Deletes a todo item by its task name
+    Deletes a tasl by its task name
     """
     todo = get_object_or_404(Todo, id=id, user=request.user)
     if todo:  # Check if the item exists before deleting
@@ -64,7 +64,7 @@ def delete_task(request, id):
 
 def update_task(request, id):
     """
-    Updates the status of a todo item to True
+    Updates the status of a task to True
     """
     todo = get_object_or_404(Todo, id=id)
     if todo:  # Check if the item exists before updating
@@ -73,3 +73,17 @@ def update_task(request, id):
         # if task name is over 20 chars long, truncate it in message and add ellipsis
         task_display = todo.todo_name[:20] + ("..." if len(todo.todo_name) > 20 else "")
         messages.success
+
+def edit_task(request, id):
+    """
+    Edits a task
+    """
+    todo = get_object_or_404(Todo, id=id, user=request.user)
+    if request.method == 'POST':
+        task_name = request.POST.get('task')
+        if task_name:
+            todo.todo_name = task_name
+            todo.save()
+            messages.success(request, f'Task "{task_name}" updated successfully.')
+            return redirect('todo_list')
+    return render(request, 'todo/edit_task.html', {'todo': todo})

@@ -7,4 +7,6 @@ urlpatterns = [
     path('toggle_status/<int:id>/', views.toggle_status, name='toggle_status'),
     path('delete/<int:id>/', views.delete_task, name='delete'),
     path('update/<int:id>/', views.update_task, name='update'),
+    path('edit/<int:id>/', views.edit_task, name='edit'),
 ]
+

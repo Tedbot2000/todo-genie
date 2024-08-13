@@ -84,7 +84,10 @@
                                             </td>
                                             <td>
                                                 <div class="btn-group" role="group">
-                                                    <button type="button" class="btn btn-danger" aria-label="Delete task" onclick="confirmDeleteAndRedirect('{% url 'delete' i.id %}')"> 
+                                                    <button type="button" class="btn btn-primary" aria-label="Edit task" onclick="location.href='{% url 'edit' i.id %}'"> 
+                                                        Edit                                    
+                                                    </button>
+                                                    <button type="button" class="btn btn-danger ms-2" aria-label="Delete task" onclick="confirmDeleteAndRedirect('{% url 'delete' i.id %}')"> 
                                                         Delete
                                                     </button>
                                                 </div>

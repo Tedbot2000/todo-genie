@@ -64,6 +64,7 @@ body {
   /* Card styling */
   .card {
     border-radius: .75rem;
+    background-color: #fdfdfb;
   }
   
   /* Card body padding */

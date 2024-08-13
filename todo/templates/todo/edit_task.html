@@ -1,0 +1,41 @@
+{% extends 'base.html' %}  # Extends the base HTML template
+{% load static %}  # Loads the static files
+
+{% block title %}ToDo List - ToDo Genie{% endblock %}
+
+{% block content %}
+    <div class="main-card-container">
+        <div class="container h-100 py-3">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-lg-12 col-xl-11">
+                    <!-- Card component -->
+                    <div class="card rounded-3">
+                        <div class="card-body p-4">
+                            <!-- Card Header section -->
+                            <section aria-label="ToDo Genie Card Header">
+                                <section role="title">
+                                    <img class="img-center" src="{% static 'images/genielogosmall.png' %}" alt="ToDo Genie Logo: A stylised, gold and dark grey illustration of a genie emerging from a lamp">
+                                    <p class="text-center brand-text">ToDo <span class="brand-text-lite">G</span>enie</p>
+                                </section>
+                            </section>
+
+                            <!-- Edit Task Form -->
+                            <section aria-label="Edit Task Form">
+                                <form method="POST" class="row g-3 justify-content-center align-items-center mb-4 pb-2" role="form">
+                                    {% csrf_token %}
+                                    <div class="col-12">
+                                        <label for="task" class="form-label">Edit task:</label>
+                                        <input type="text" id="task" class="form-control" name="task" value="{{ todo.todo_name }}" required>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-primary">Update Task</button>
+                                    </div>
+                                </form>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
