@@ -21,9 +21,10 @@ body {
       margin-right: auto;
   }
 
+  /* make main content area grow and scroll */
   main {
-    flex: 1; /* make main content area grow */
-    overflow-y: auto; /* allow main content area to scroll */
+    flex: 1;
+    overflow-y: auto;
   }
 
   header {
@@ -66,13 +67,11 @@ body {
   .card {
     border-radius: .75rem;
     background-color: #fdfdfb;
-  }
-  
+  }  
   /* Card body padding */
   .custom-card-body {
     padding: 2rem 2rem 3rem 2rem;
   }
-
   /* card styling for login and signup screens */
   .left-aligned {
     float: left;
@@ -152,7 +151,7 @@ footer {
     margin-right: 0.5rem;
   }
 
-  /* Move the ToDo Items field above the Status and Actions fields */
+  /* Move the Task field above the Status and Actions fields */
   .table th:first-child, .table td:first-child {
     width: 100%;
     text-align: left;

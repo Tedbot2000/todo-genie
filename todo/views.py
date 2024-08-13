@@ -42,7 +42,7 @@ def toggle_status(request, id):
     next_index = (current_index + 1) % len(STATUSES)
     todo.status = STATUSES[next_index]
     todo.save()
-    # if task name is over 20 chars long, truncate & add ellipsis
+    # truncate task name to 20 chars
     task_display = todo.todo_name[:20] + (
         "..." if len(todo.todo_name) > 20 else "")
     messages.success(request, f'Status of "{task_display}" updated to {todo.status}.')
@@ -56,7 +56,7 @@ def delete_task(request, id):
     todo = get_object_or_404(Todo, id=id, user=request.user)
     if todo:  # Check if the item exists before deleting
         todo.delete()
-        # if task name is over 20 chars long, truncate it in message and add ellipsis
+        # truncate task name to 20 chars
         task_display = todo.todo_name[:20] + ("..." if len(todo.todo_name) > 20 else "")
         messages.success(request, f'Task "{task_display}" deleted successfully.')
     return redirect('todo_list')
@@ -70,7 +70,7 @@ def update_task(request, id):
     if todo:  # Check if the item exists before updating
         todo.status = True
         todo.save()
-        # if task name is over 20 chars long, truncate it in message and add ellipsis
+        # truncate task name to 20 chars
         task_display = todo.todo_name[:20] + ("..." if len(todo.todo_name) > 20 else "")
         messages.success
 
