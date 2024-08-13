@@ -13,18 +13,14 @@
                         <div class="card-body p-4">
                             <!-- Card Header section -->
                             <section aria-label="ToDo Genie Card Header">
-                                <section role="title">
-                                    <img class="img-center" src="{% static 'images/genielogosmall.png' %}" alt="ToDo Genie Logo: A stylised, gold and dark grey illustration of a genie emerging from a lamp">
-                                    <p class="text-center brand-text">ToDo <span class="brand-text-lite">G</span>enie</p>
-                                </section>
+                                <img class="img-center" src="{% static 'images/genielogosmall.png' %}" alt="ToDo Genie Logo: A stylised, gold and dark grey illustration of a genie emerging from a lamp">
+                                <p class="text-center brand-text">ToDo Genie</p>
                             </section>
 
                             <!-- Instructions section -->
-                            <section role="region" aria-label="Instructions">
-                                <div class="instructions">
+                            <div class="instructions">
                                     <p>Welcome to ToDo Genie. Add tasks using the text box and then prioritise or delete tasks using the Status and Actions buttons.</p>
-                                </div>
-                            </section>
+                            </div>
 
                             <!-- Display messages -->
                             {% if messages %}
@@ -41,7 +37,7 @@
 
                             <!-- Form for adding new tasks to do -->
                             <section aria-label="Add Task Form">
-                                <form method="POST" class="row g-3 justify-content-center align-items-center mb-4 pb-2" role="form">
+                                <form method="POST" class="row g-3 justify-content-center align-items-center mb-4 pb-2">
                                     {% csrf_token %}
                                     <div class="col-12">
                                         <label for="task" class="form-label">Add a task to do:</label>
