@@ -45,7 +45,8 @@ def toggle_status(request, id):
     # truncate task name to 20 chars
     task_display = todo.todo_name[:20] + (
         "..." if len(todo.todo_name) > 20 else "")
-    messages.success(request, f'Status of "{task_display}" updated to {todo.status}.')
+    messages.success(
+        request, f'Status of "{task_display}" updated to {todo.status}.')
     return redirect('todo_list')
 
 
@@ -57,8 +58,10 @@ def delete_task(request, id):
     if todo:  # Check if the item exists before deleting
         todo.delete()
         # truncate task name to 20 chars
-        task_display = todo.todo_name[:20] + ("..." if len(todo.todo_name) > 20 else "")
-        messages.success(request, f'Task "{task_display}" deleted successfully.')
+        task_display = todo.todo_name[:20] + (
+            "..." if len(todo.todo_name) > 20 else "")
+        messages.success(
+            request, f'Task "{task_display}" deleted successfully.')
     return redirect('todo_list')
 
 
@@ -71,8 +74,10 @@ def update_task(request, id):
         todo.status = True
         todo.save()
         # truncate task name to 20 chars
-        task_display = todo.todo_name[:20] + ("..." if len(todo.todo_name) > 20 else "")
+        task_display = todo.todo_name[:20] + (
+            "..." if len(todo.todo_name) > 20 else "")
         messages.success
+
 
 def edit_task(request, id):
 
@@ -92,7 +97,8 @@ def edit_task(request, id):
 
             if len(task_name) > 60:
 
-                messages.error(request, 'Task name cannot be more than 60 characters long.')
+                messages.error(request, 'Task name '
+                               'cannot be more than 60 characters long.')
 
             else:
 
@@ -100,9 +106,9 @@ def edit_task(request, id):
 
                 todo.save()
 
-                messages.success(request, f'Task "{task_name}" updated successfully.')
+                messages.success(
+                    request, f'Task "{task_name}" updated successfully.')
 
                 return redirect('todo_list')
 
     return render(request, 'todo/edit_task.html', {'todo': todo})
-    

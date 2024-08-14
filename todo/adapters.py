@@ -3,6 +3,7 @@
 from allauth.account.adapter import DefaultAccountAdapter
 from django.contrib import messages
 
+
 class MyAccountAdapter(DefaultAccountAdapter):
 
     def add_message(self, request, level, message_template, message_context=None, extra_tags='', fail_silently=False):
