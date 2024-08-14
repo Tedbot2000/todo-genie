@@ -23,3 +23,6 @@ class Todo(models.Model):
         "(choices: Not Started, In Progress, Completed)"
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+
+def __str__(self):
+        return self.todo_name
