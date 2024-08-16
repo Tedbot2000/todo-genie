@@ -18,6 +18,8 @@ def todo_list(request):
     """
     if request.method == 'POST':
         task = request.POST.get('task')
+        due_date = request.POST.get('due_date')
+        priority = request.POST.get('priority')
         # is task a non-empty string?
         if isinstance(task, str) and task.strip():
             if len(task) > 60:
@@ -25,7 +27,8 @@ def todo_list(request):
                                'Task name cannot be more '
                                'than 60 characters long.')
             else:
-                Todo.objects.create(todo_name=task, user=request.user)
+                Todo.objects.create(todo_name=task, user=request.user, due_date=due_date,
+                    priority=priority)
                 # if task name is over 20 chars long, truncate & add ellipsis
                 task_display = task[:20] + ("..." if len(task) > 20 else "")
                 messages.success(request, f'Task "{task_display}'
@@ -33,7 +36,7 @@ def todo_list(request):
         else:
             messages.error(request, 'Task cannot be empty.')
         return redirect('todo_list')
-    todos = Todo.objects.filter(user=request.user).order_by('id')
+    todos = Todo.objects.filter(user=request.user).order_by('priority', 'due_date')
     return render(request, 'todo/todo_list.html', {'todos': todos})
 
 
