@@ -73,6 +73,14 @@
                             </form>
                         </section>
 
+                        <form method="GET" class="row g-3 justify-content-center align-items-center mb-4 pb-2">
+                            <label for="sort_by" class="form-label">Sort by:</label>
+                            <select name="sort_by" id="sort_by" class="form-select" onchange="this.form.submit()">
+                                <option value="priority" {% if sort_by == "priority" %}selected{% endif %}>Priority</option>
+                                <option value="due_date" {% if sort_by == "due_date" %}selected{% endif %}>Due Date</option>
+                            </select>
+                        </form>
+
                         <!-- Table displaying Tasks -->
                         <section aria-label="Task List">
                             <h4 class="text-center">Your Tasks</h4>
