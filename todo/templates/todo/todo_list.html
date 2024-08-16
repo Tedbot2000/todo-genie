@@ -74,7 +74,8 @@
                                     <tr>
                                         <th>Task To Do</th>
                                         <th>Status</th>
-                                        <th>Actions</th>
+                                        <th>Due Date</th>
+                                        <th>Priority</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -82,11 +83,10 @@
                                     {% for i in todos %}
                                     <tr>
                                         <td>{{ i.todo_name }}</td>
-                                        <td>
-                                            <!-- Give the buttons different colours representing their toggle state -->
-                                            
-                                            
-                                        </td>
+                                        <!-- Updating priority with task -->
+                                        <td>{{ i.priority }}</td>
+                                        <!-- Updating due day with task  -->
+                                        <td>{{ i.due_date }}</td>
                                     </tr>
                                     {% endfor %}
                                 </tbody>
