@@ -75,6 +75,8 @@
                                         <th>Task To Do</th>
                                         <th>Status</th>
                                         <th>Actions</th>
+                                        <th>Due Date</th>
+                                        <th>Priority</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -87,6 +89,10 @@
                                             
                                             
                                         </td>
+                                        <!-- Updating due day with task  -->
+                                        <td>{{ i.due_date }}</td>
+                                        <!-- Updating priority with task -->
+                                        <td>{{ i.priority }}</td>
                                     </tr>
                                     {% endfor %}
                                 </tbody>
