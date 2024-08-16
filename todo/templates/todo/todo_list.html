@@ -60,6 +60,14 @@
                                     </select>
                                 </div>
                                 <div class="col-12">
+                                    <label for="status">Status:</label>
+                                    <select name="priority" id="priority">
+                                        <option value="Low">Not started</option>
+                                        <option value="Medium" selected>Medium</option>
+                                        <option value="High">High</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
                                     <button type="submit" class="btn btn-primary">Add Task</button>
                                 </div>
                             </form>
@@ -74,8 +82,8 @@
                                     <tr>
                                         <th>Task To Do</th>
                                         <th>Status</th>
-                                        <th>Due Date</th>
                                         <th>Priority</th>
+                                        <th>Due Date</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -83,6 +91,8 @@
                                     {% for i in todos %}
                                     <tr>
                                         <td>{{ i.todo_name }}</td>
+                                        <!-- Updating status with task -->
+                                        <td>{{ i.status }}</td>
                                         <!-- Updating priority with task -->
                                         <td>{{ i.priority }}</td>
                                         <!-- Updating due day with task  -->
