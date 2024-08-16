@@ -61,10 +61,10 @@
                                 </div>
                                 <div class="col-12">
                                     <label for="status">Status:</label>
-                                    <select name="priority" id="priority">
-                                        <option value="Low">Not started</option>
-                                        <option value="Medium" selected>Medium</option>
-                                        <option value="High">High</option>
+                                    <select name="status" id="status">
+                                        <option value="not-started">Not started</option>
+                                        <option value="in-progress" selected>In Progress</option>
+                                        <option value="done">Done</option>
                                     </select>
                                 </div>
                                 <div class="col-12">
@@ -97,6 +97,15 @@
                                         <td>{{ i.priority }}</td>
                                         <!-- Updating due day with task  -->
                                         <td>{{ i.due_date }}</td>
+                                        <!-- Option to edit task -->
+                                        <td>
+                                            <div class="btn-group" role="group">
+                                                <button type="button" class="btn btn-primary" aria-label="Edit task" onclick="location.href=('{% url 'edit' i.id %}')">Edit</button>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="btn btn-danger ms-2" type="button" aria-label="Delete task" onclick="confirmDeleteAndRedirect = ('{% url 'delete' i.id %}')">Delete</div>
+                                        </td>
                                     </tr>
                                     {% endfor %}
                                 </tbody>
