@@ -99,6 +99,9 @@ def edit_task(request, id):
     if request.method == 'POST':
 
         task_name = request.POST.get('task')
+        due_date = request.POST.get('due_date')
+        priority = request.POST.get('priority')
+        status = request.POST.get('status')
 
         if task_name:
 
@@ -110,6 +113,9 @@ def edit_task(request, id):
             else:
 
                 todo.todo_name = task_name
+                todo.due_date = due_date
+                todo.priority = priority
+                todo.status = status
 
                 todo.save()
 
