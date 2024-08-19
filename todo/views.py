@@ -1,4 +1,4 @@
-# test_views.py
+from django.db.models import Case, When, IntegerField
 from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth.models import User
@@ -6,6 +6,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Todo
+
 
 # Constant for statuses (enabling more to be added later)
 STATUSES = ["Not Started", "In Progress", "Completed"]
@@ -18,6 +19,8 @@ def todo_list(request):
     """
     if request.method == 'POST':
         task = request.POST.get('task')
+        due_date = request.POST.get('due_date')
+        priority = request.POST.get('priority')
         # is task a non-empty string?
         if isinstance(task, str) and task.strip():
             if len(task) > 60:
@@ -25,7 +28,8 @@ def todo_list(request):
                                'Task name cannot be more '
                                'than 60 characters long.')
             else:
-                Todo.objects.create(todo_name=task, user=request.user)
+                Todo.objects.create(todo_name=task, user=request.user, due_date=due_date,
+                    priority=priority)
                 # if task name is over 20 chars long, truncate & add ellipsis
                 task_display = task[:20] + ("..." if len(task) > 20 else "")
                 messages.success(request, f'Task "{task_display}'
@@ -33,8 +37,26 @@ def todo_list(request):
         else:
             messages.error(request, 'Task cannot be empty.')
         return redirect('todo_list')
-    todos = Todo.objects.filter(user=request.user).order_by('id')
-    return render(request, 'todo/todo_list.html', {'todos': todos})
+    
+    sort_by = request.GET.get('sort_by', 'priority')  # Default to sorting by due date
+    if sort_by not in ['priority', 'due_date']:
+        sort_by = 'priority'
+
+    # Order the tasks based on the selected sorting option
+    if sort_by == 'priority':
+        todos = Todo.objects.filter(user=request.user).order_by(
+            Case(
+                When(priority='High', then=1),
+                When(priority='Medium', then=2),
+                When(priority='Low', then=3),
+                default=4,  # In case priority is None or invalid
+                output_field=IntegerField(),
+            ),
+            'due_date'  # Secondary sorting by due date to ensure consistent ordering
+        )
+    elif sort_by == 'due_date':
+        todos = Todo.objects.filter(user=request.user).order_by('due_date', 'priority')
+    return render(request, 'todo/todo_list.html', {'todos': todos, 'sort_by': sort_by})
 
 
 def toggle_status(request, id):
@@ -96,6 +118,9 @@ def edit_task(request, id):
     if request.method == 'POST':
 
         task_name = request.POST.get('task')
+        due_date = request.POST.get('due_date')
+        priority = request.POST.get('priority')
+        status = request.POST.get('status')
 
         if task_name:
 
@@ -107,6 +132,9 @@ def edit_task(request, id):
             else:
 
                 todo.todo_name = task_name
+                todo.due_date = due_date
+                todo.priority = priority
+                todo.status = status
 
                 todo.save()
 

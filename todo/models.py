@@ -22,6 +22,13 @@ class Todo(models.Model):
         help_text="The status of the task "
         "(choices: Not Started, In Progress, Completed)"
     )
+    due_date = models.DateField(null=True, blank=True, help_text="Due date for the task")
+    priority = models.CharField(
+        max_length=10,
+        choices=[("Low", "Low"), ("Medium", "Medium"), ("High", "High")],
+        default="Medium",
+        help_text="Priority level of the task (choices: Low, Medium, High)"
+    )
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
 def __str__(self):

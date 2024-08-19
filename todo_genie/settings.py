@@ -28,11 +28,11 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['.codeinstitute-ide.net', '.herokuapp.com']
+ALLOWED_HOSTS = ['.codeinstitute-ide.net', '.herokuapp.com', '8000-moessa1-todogenie20-n1oho5mldco.ws-eu115.gitpod.io']
 
-CSRF_TRUSTED_ORIGINS = ['https://*.codeinstitute-ide.net', 'https://*.herokuapp.com']
+CSRF_TRUSTED_ORIGINS = ['https://*.codeinstitute-ide.net', 'https://*.herokuapp.com', 'https://8000-moessa1-todogenie20-n1oho5mldco.ws-eu115.gitpod.io']
 
 
 # Application definition
