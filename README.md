@@ -37,6 +37,7 @@ The primary users of ToDo Genie are individuals from various backgrounds who see
 ToDo Genie aims to provide users with a streamlined and efficient way to manage their tasks, ensuring they stay on top of their commitments and goals. By offering essential features such as task creation, (and, in a future version, prioritisation, and tracking), the app helps users organise their day-to-day activities with ease. The goal is to create a minimalist, user-focused experience that simplifies task management, making it easier for users to achieve their personal and professional objectives without distraction.
 
 
+
 ## Database Structure & Purpose
 
 ### Overview
@@ -114,37 +115,6 @@ class Todo(models.Model):
 
 ## Database Relationships
 
-```mermaid
-erDiagram
-    USER ||--o{ TODO : "has many"
-    USER {
-        int id PK
-        string username
-        string password
-        string email
-        boolean is_active
-        datetime date_joined
-    }
-    TODO {
-        int id PK
-        string todo_name
-        string status
-        int user_id FK
-    }
-```
-
-### Key Points:
-1. One-to-Many Relationship:
-   - One user can have multiple tasks (todos)
-   - Each task belongs to exactly one user
-   - Relationship enforced through foreign key constraint
-
-2. Data Integrity:
-   - CASCADE deletion ensures no orphaned tasks
-   - Foreign key constraints maintain referential integrity
-   - Status choices are enforced at the database level
-
-### ToDo List ERD
 The Entity Relationship Diagram is intentionally straightforward to maintain a clear focus on the Minimum Viable Product (MVP). This approach ensured a clear vision from the outset, with the flexibility to create a new ERD for any significant additions or changes in the future.
 
 ![ToDo List ERD](https://github.com/Tedbot2000/todo-genie-01/blob/main/docs/images/ToDo_ListERDDiagram.png)
@@ -164,6 +134,18 @@ status = models.CharField(
         "(choices: Not Started, In Progress, Completed)"
     )
 ```
+
+### Key Points:
+1. One-to-Many Relationship:
+   - One user can have multiple tasks (todos)
+   - Each task belongs to exactly one user
+   - Relationship enforced through foreign key constraint
+
+2. Data Integrity:
+   - CASCADE deletion ensures no orphaned tasks
+   - Foreign key constraints maintain referential integrity
+   - Status choices are enforced at the database level
+
 
 ## Database Design Decisions
 
