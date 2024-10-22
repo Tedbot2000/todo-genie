@@ -43,8 +43,6 @@ ToDo Genie aims to provide users with a streamlined and efficient way to manage 
 ### Overview
 ToDo Genie uses a PostgreSQL database to store user and task information. The application implements a straightforward database design focusing on the essential requirements of a task management system while maintaining data integrity and user data separation.
 
-### Database Schema & Models
-
 ### Core Models
 
 #### User Model (Django Built-in)
