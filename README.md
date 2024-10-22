@@ -37,13 +37,119 @@ The primary users of ToDo Genie are individuals from various backgrounds who see
 ToDo Genie aims to provide users with a streamlined and efficient way to manage their tasks, ensuring they stay on top of their commitments and goals. By offering essential features such as task creation, (and, in a future version, prioritisation, and tracking), the app helps users organise their day-to-day activities with ease. The goal is to create a minimalist, user-focused experience that simplifies task management, making it easier for users to achieve their personal and professional objectives without distraction.
 
 
+## Database Structure & Purpose
+
+### Overview
+ToDo Genie uses a PostgreSQL database to store user and task information. The application implements a straightforward database design focusing on the essential requirements of a task management system while maintaining data integrity and user data separation.
+
+### Database Schema & Models
+
+### Core Models
+
+#### User Model (Django Built-in)
+The application utilises Django's built-in `User` model from `django.contrib.auth.models`.
+
+**Fields:**
+- `id` (Primary Key, AutoField)
+- `username` (CharField, unique)
+- `password` (CharField)
+- `email` (EmailField)
+- `first_name` (CharField)
+- `last_name` (CharField)
+- `is_active` (BooleanField)
+- `date_joined` (DateTimeField)
+
+#### Todo Model (Custom)
+The `Todo` model represents individual tasks in the system.
+
+**Fields:**
+```python
+class Todo(models.Model):
+    todo_name = models.CharField(
+        max_length=60,
+        blank=False,
+        help_text="The name of the task (max 60 characters)"
+    )
+    status = models.CharField(
+        max_length=20,
+        default="Not Started",
+        choices=[
+            ("Not Started", "Not Started"),
+            ("In Progress", "In Progress"),
+            ("Completed", "Completed"),
+        ],
+        help_text="The status of the task"
+    )
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        null=True
+    )
+```
+
+### Field Details
+
+#### Todo Model Fields:
+1. **todo_name**
+   - Type: CharField
+   - Max Length: 60 characters
+   - Nullable: False
+   - Purpose: Stores the task description
+   - Validation: Cannot be empty, maximum 60 characters
+
+2. **status**
+   - Type: CharField
+   - Max Length: 20 characters
+   - Default: "Not Started"
+   - Choices: ["Not Started", "In Progress", "Completed"]
+   - Purpose: Tracks the current state of the task
+
+3. **user**
+   - Type: ForeignKey
+   - References: Django User model
+   - On Delete: CASCADE
+   - Nullable: True
+   - Purpose: Links tasks to specific users
+   - Behavior: When a user is deleted, all their tasks are also deleted
+
+## Database Relationships
+
+```mermaid
+erDiagram
+    USER ||--o{ TODO : "has many"
+    USER {
+        int id PK
+        string username
+        string password
+        string email
+        boolean is_active
+        datetime date_joined
+    }
+    TODO {
+        int id PK
+        string todo_name
+        string status
+        int user_id FK
+    }
+```
+
+### Key Points:
+1. One-to-Many Relationship:
+   - One user can have multiple tasks (todos)
+   - Each task belongs to exactly one user
+   - Relationship enforced through foreign key constraint
+
+2. Data Integrity:
+   - CASCADE deletion ensures no orphaned tasks
+   - Foreign key constraints maintain referential integrity
+   - Status choices are enforced at the database level
+
 ### ToDo List ERD
+The Entity Relationship Diagram is intentionally straightforward to maintain a clear focus on the Minimum Viable Product (MVP). This approach ensured a clear vision from the outset, with the flexibility to create a new ERD for any significant additions or changes in the future.
 
-I intentionally kept the Entity Relationship Diagram straightforward to maintain a clear focus on the Minimum Viable Product (MVP). This approach ensured that I had a clear vision from the outset, with the flexibility to create a new ERD for any significant additions or changes in the future.
+![ToDo List ERD](https://github.com/Tedbot2000/todo-genie-01/blob/main/docs/images/ToDo_ListERDDiagram.png)
 
-![ToDo List ERD](https://github.com/Tedbot2000/todo-genie/blob/main/docs/images/ToDo_ListERDDiagram.png)
-
-During development, I decided to modify the Status variable from a simple Boolean toggle to a String/CharField. This change was made when I descided there should be more status options beyond just "Not Started" and "Complete."
+During development, the decision was taken to modify the Status variable from a simple Boolean toggle to a String/CharField, tri-state toggle. This change was made in order to create more status options beyond just "Not Started" and "Complete."
 
 ```python
 status = models.CharField(
@@ -58,6 +164,102 @@ status = models.CharField(
         "(choices: Not Started, In Progress, Completed)"
     )
 ```
+
+## Database Design Decisions
+
+### 1. Choice of PostgreSQL
+- Robust relational database
+- Excellent support for Django
+- Strong data integrity features
+- Scalable for future growth
+
+### 2. Model Structure
+- Minimal design focusing on MVP requirements
+- User authentication handled by Django's built-in system
+- Simple task structure with essential fields only
+
+### 3. Security Considerations
+- User passwords hashed by Django's auth system
+- Foreign key relationships protect data integrity
+- Task access controlled through user relationships
+
+## Future Database Enhancements
+
+The current database structure allows for several potential enhancements:
+
+1. **Task Categories**
+   ```python
+   class Category(models.Model):
+       name = models.CharField(max_length=50)
+       user = models.ForeignKey(User, on_delete=models.CASCADE)
+   ```
+
+2. **Due Dates**
+   ```python
+   # Add to Todo model:
+   due_date = models.DateTimeField(null=True, blank=True)
+   ```
+
+3. **Task Priority**
+   ```python
+   # Add to Todo model:
+   priority = models.IntegerField(
+       choices=[(1, 'Low'), (2, 'Medium'), (3, 'High')],
+       default=2
+   )
+   ```
+
+4. **Task Tags**
+   ```python
+   class Tag(models.Model):
+       name = models.CharField(max_length=30)
+       todos = models.ManyToManyField(Todo)
+   ```
+
+## Database Management
+
+### Migrations
+The database structure is managed through Django migrations:
+1. Initial migration creates the Todo model
+2. Status field migration adds the status choices
+3. User relationship migration adds the foreign key
+
+
+## Database Access Patterns
+
+### Common Queries
+1. Retrieving user's tasks:
+```python
+Todo.objects.filter(user=request.user).order_by('id')
+```
+
+2. Updating task status:
+```python
+todo = Todo.objects.get(id=id, user=request.user)
+todo.status = new_status
+todo.save()
+```
+
+3. Task deletion:
+```python
+todo = Todo.objects.get(id=id, user=request.user)
+todo.delete()
+```
+
+## Performance Considerations
+
+1. **Indexing**
+   - Primary keys automatically indexed
+   - Foreign key (user_id) indexed for faster joins
+
+2. **Query Optimization**
+   - Filtered queries use user_id for efficiency
+   - Task retrievals limited to authenticated user
+
+3. **Data Constraints**
+   - Maximum task name length (60 chars)
+   - Predefined status choices
+   - Required user association
 
 
 ### Agile Development: Creating a Kanban Board on GitHub
